@@ -112,6 +112,23 @@ router.get("/categories/:name/", async function(request) {
 	return Response.json(await fetchHTMLInfo(url.toString()))
 })
 
+router.get("/search", async function(request) {
+	let url = new URL(request.url)
+	url.hostname = "thisvid.com"
+	url.protocol = "https"
+	url.port = "443"
+	url.searchParams
+	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?"))
+})
+
+router.get("/search", async function ({params, url}) {
+	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?q="+new URL(url).searchParams.get('url')))
+})
+
+router.get("/search/:id/", async function ({params, url}) {
+	return Response.json(await fetchHTMLInfo("https://thisvid.com/search/"+params.id+"/?q="+new URL(url).searchParams.get('url')))
+})
+
 router.get("/", async function() {
 	return Response.json(await fetchHTMLInfo("https://thisvid.com/latest-updates/1/"))
 })
