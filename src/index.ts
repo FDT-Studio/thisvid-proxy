@@ -121,12 +121,12 @@ router.get("/search", async function(request) {
 	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?"))
 })
 
-router.get("/search", async function ({params, url}) {
-	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?q="+new URL(url).searchParams.get('url')))
+router.get("/search", async function ({url}) {
+	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?q="+new URL(url).searchParams.get('query')))
 })
 
 router.get("/search/:id/", async function ({params, url}) {
-	return Response.json(await fetchHTMLInfo("https://thisvid.com/search/"+params.id+"/?q="+new URL(url).searchParams.get('url')))
+	return Response.json(await fetchHTMLInfo("https://thisvid.com/search/"+params.id+"/?q="+new URL(url).searchParams.get('query')))
 })
 
 router.get("/", async function() {
