@@ -117,7 +117,6 @@ router.get("/search", async function(request) {
 	url.hostname = "thisvid.com"
 	url.protocol = "https"
 	url.port = "443"
-	url.searchParams
 	return Response.json(await fetchHTMLInfo("https://thisvid.com/search?"))
 })
 
